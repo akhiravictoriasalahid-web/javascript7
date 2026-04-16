@@ -40,3 +40,29 @@ let score = 0;
 
 //Initializing time
 let time = 10;
+
+// PART 1 addWordToDOM, updateScore, Add an event listener
+function addWordToDOM() {
+  const randomIndex = Math.floor(Math.random() * words.length);
+  randomWord = words[randomIndex];
+
+  word.innerText = randomWord;
+}
+addWordToDOM();
+
+function updateScore() {
+  score++;
+  scoreEl.innerText = score;
+}
+
+text.addEventListener("input", function(e) {
+  const enteredText = e.target.value;
+
+  if (enteredText === randomWord) {
+    updateScore();
+    addWordToDOM();
+    time += 5;
+    timeEl.innerText = time;
+    e.target.value = "";
+  }
+});

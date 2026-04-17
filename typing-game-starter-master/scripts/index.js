@@ -66,3 +66,24 @@ text.addEventListener("input", function(e) {
     e.target.value = "";
   }
 });
+
+// PART 2 updateTime function & gameOver function
+function updateTime() {
+  time--;
+  timeEl.innerText = time;
+
+  if (time === 0) {
+    gameOver();
+  }
+}
+setInterval(updateTime,1000);
+
+function gameOver() {
+  endgameEl.innerHTML = `
+  <h1>Time ran out</h1>
+  <p>Your score is ${score}</p>
+  <button onclick="location.reload()">Reload</button>
+  `;
+
+  endgameEl.style.display = "flex";
+}

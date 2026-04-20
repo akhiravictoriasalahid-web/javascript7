@@ -55,18 +55,6 @@ function updateScore() {
   scoreEl.innerText = score;
 }
 
-text.addEventListener("input", function(e) {
-  const enteredText = e.target.value;
-
-  if (enteredText === randomWord) {
-    updateScore();
-    addWordToDOM();
-    time += 5;
-    timeEl.innerText = time;
-    e.target.value = "";
-  }
-});
-
 // PART 2 updateTime function & gameOver function
 function updateTime() {
   time--;
@@ -87,3 +75,35 @@ function gameOver() {
 
   endgameEl.style.display = "flex";
 }
+
+// PART 3 
+let difficulty = "easy";
+
+settingsBtn.addEventListener("click", () => {
+  settings.classList.toggle("hide");
+});
+
+settingsForm.addEventListener("change", (e) => {
+  difficulty = e.target.value;
+});
+
+text.addEventListener("input", function(e) {
+  const enteredText = e.target.value;
+
+  if (enteredText === randomWord) {
+    updateScore();
+    addWordToDOM();
+
+    if (difficulty === "easy") {
+      time += 5;
+    } else if (difficulty === "medium") {
+      time += 3;
+    } else {
+      time += 2;
+    }
+
+    timeEl.innerText = time;
+    e.target.value = "";
+  }
+}); 
+
